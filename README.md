@@ -1,2 +1,2 @@
 # chat-room
-chat room with angular &amp; node &amp;  socket.io
+chat room with chatroom with angular & node & socket.io & express

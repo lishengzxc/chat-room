@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header"><a href="javascript:;" class="navbar-brand">Chatroom</a></div>
+    </div>
+</div>
+<div class="container" style="margin-top:100px;">
+    <div class="col-md-12">
+        <div class="panel panel-default room">
+            <div class="panel-heading room-header">Chatroom</div>
+            <div class="panel-body room-content">
+                <div class="messages">
+                    <div class="list-group"></div>
+                </div>
+                <form action="" class="message-creator">
+                    <div class="form-group"><textarea name="" id="" cols="30" rows="2" class="form-control message-input" required placeholder="Ctrl+Enter to quick send"></textarea></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/components/angular/angular.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect();
+    socket.on("connected", function (data) {
+        alert(data.hello);
+        socket.emit("otherEvent", "sadfasdfsadf");
+    });
+</script>
+</body>
+</html>

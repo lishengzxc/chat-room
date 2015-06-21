@@ -1,6 +1,5 @@
 var express = require('express');
 var http = require('http');
-var sio = require('socket.io');
 var app = express();
 var server = http.createServer(app);
 
@@ -12,11 +11,16 @@ app.get('/', function (req, res) {
 
 server.listen(3000);
 
-var socket = sio.listen(server);
-socket.on('connection', function (sockect) {
-	socket.emit('connected', {hello: "你好"});
-	sockect.on('otherEvent', function (data) {
-		console.log(data);
+var io = require('socket.io').listen(server.listen(3000));
+
+var messages = [];
+io.sockets.on('connection',function(socket){
+	socket.on('getAllMessages',function(){
+		socket.emit('allMessages',messages);
+	});
+	socket.on('createMessage',function(message){
+		messages.push(message);
+		io.sockets.emit('messageAdded',message);
 	})
 });
 
